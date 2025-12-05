@@ -7,4 +7,5 @@ import java.util.List;
 public interface PlanetService {
     List<PlanetDTO> findAllPlanets();
     List<PlanetDTO> findAllPlanetsByType(String type);
+    PlanetDTO findPlanetById(int id);
 }

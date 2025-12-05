@@ -4,9 +4,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import planetaryAPI.dtos.Mappers;
 import planetaryAPI.dtos.PlanetDTO;
+import planetaryAPI.entities.Planet;
 import planetaryAPI.repositories.PlanetRepository;
+import planetaryAPI.exceptions.NotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -25,5 +28,12 @@ public class PlanetServiceImpl implements PlanetService {
         return planetRepository.findAllByTypeIgnoreCase(type).stream()
                 .map(Mappers::mapPlanetToPlanetDTO)
                 .toList();
+    }
+
+    @Override
+    public PlanetDTO findPlanetById(int id) throws NotFoundException {
+        Optional<Planet> planet = planetRepository.findById(id);
+        if (planet.isPresent()) return Mappers.mapPlanetToPlanetDTO(planet.get());
+        throw new NotFoundException("Planet with id " + id + " not found");
     }
 }
