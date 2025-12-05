@@ -1,4 +1,4 @@
-package planetaryAPI.dtos;
+package planetaryAPI.dtos.planet;
 
 public record PlanetDTO(
         int planetId,
