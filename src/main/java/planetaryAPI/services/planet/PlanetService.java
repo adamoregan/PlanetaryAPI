@@ -1,5 +1,6 @@
 package planetaryAPI.services.planet;
 
+import planetaryAPI.dtos.planet.PlanetChangeDTO;
 import planetaryAPI.dtos.planet.PlanetCreateDTO;
 import planetaryAPI.dtos.planet.PlanetDTO;
 
@@ -11,5 +12,5 @@ public interface PlanetService {
     PlanetDTO findPlanetById(int id);
     void deletePlanetById(int id);
     PlanetDTO createPlanet(PlanetCreateDTO planetCreateDTO);
-
+    PlanetDTO changePlanet(PlanetChangeDTO planetChangeDTO);
 }

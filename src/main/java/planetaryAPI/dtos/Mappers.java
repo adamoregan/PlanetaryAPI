@@ -1,5 +1,6 @@
 package planetaryAPI.dtos;
 
+import planetaryAPI.dtos.planet.PlanetChangeDTO;
 import planetaryAPI.dtos.planet.PlanetCreateDTO;
 import planetaryAPI.dtos.planet.PlanetDTO;
 import planetaryAPI.entities.Moon;
@@ -40,6 +41,17 @@ public class Mappers {
 
     public static Planet mapPlanetCreateDTOToPlanet(PlanetCreateDTO p) {
         Planet planet = new Planet();
+        planet.setName(p.name());
+        planet.setType(p.type());
+        planet.setMass_kg(p.massKg());
+        planet.setRadius_km(p.radiusKm());
+        planet.setOrbital_period_days(p.orbitalPeriodDays());
+        return planet;
+    }
+
+    public static Planet mapPlanetChangeDTOToPlanet(PlanetChangeDTO p) {
+        Planet planet = new Planet();
+        planet.setPlanet_id(p.planetId());
         planet.setName(p.name());
         planet.setType(p.type());
         planet.setMass_kg(p.massKg());

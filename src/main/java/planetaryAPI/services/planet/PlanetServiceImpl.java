@@ -3,6 +3,7 @@ package planetaryAPI.services.planet;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import planetaryAPI.dtos.Mappers;
+import planetaryAPI.dtos.planet.PlanetChangeDTO;
 import planetaryAPI.dtos.planet.PlanetDTO;
 import planetaryAPI.entities.Planet;
 import planetaryAPI.repositories.PlanetRepository;
@@ -50,5 +51,13 @@ public class PlanetServiceImpl implements PlanetService {
         Planet newPlanet = Mappers.mapPlanetCreateDTOToPlanet(planetCreateDTO);
         newPlanet = planetRepository.save(newPlanet);
         return Mappers.mapPlanetToPlanetDTO(newPlanet);
+    }
+
+    @Override
+    public PlanetDTO changePlanet(PlanetChangeDTO planetChangeDTO) {
+        findPlanetById(planetChangeDTO.planetId());
+        Planet updatedPlanet = Mappers.mapPlanetChangeDTOToPlanet(planetChangeDTO);
+        updatedPlanet = planetRepository.save(updatedPlanet);
+        return Mappers.mapPlanetToPlanetDTO(updatedPlanet);
     }
 }
