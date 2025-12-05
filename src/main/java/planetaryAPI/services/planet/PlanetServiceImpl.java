@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class PlanetServiceImpl implements planetaryAPI.services.planet.PlanetService {
+public class PlanetServiceImpl implements PlanetService {
     private PlanetRepository planetRepository;
 
     @Override
