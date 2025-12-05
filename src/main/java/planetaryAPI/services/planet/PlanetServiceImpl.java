@@ -39,7 +39,6 @@ public class PlanetServiceImpl implements PlanetService {
         throw new NotFoundException("Planet with id " + id + " not found");
     }
 
-
     @Override
     public void deletePlanetById(int id) throws NotFoundException {
         int rowsDeleted = planetRepository.deleteById(id);
