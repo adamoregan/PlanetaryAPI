@@ -36,4 +36,11 @@ public class PlanetServiceImpl implements PlanetService {
         if (planet.isPresent()) return Mappers.mapPlanetToPlanetDTO(planet.get());
         throw new NotFoundException("Planet with id " + id + " not found");
     }
+
+
+    @Override
+    public void deletePlanetById(int id) throws NotFoundException {
+        int rowsDeleted = planetRepository.deleteById(id);
+        if (rowsDeleted == 0) throw new NotFoundException("Planet with id " + id + " not found");
+    }
 }

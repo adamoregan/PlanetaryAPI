@@ -8,4 +8,5 @@ public interface PlanetService {
     List<PlanetDTO> findAllPlanets();
     List<PlanetDTO> findAllPlanetsByType(String type);
     PlanetDTO findPlanetById(int id);
+    void deletePlanetById(int id);
 }
