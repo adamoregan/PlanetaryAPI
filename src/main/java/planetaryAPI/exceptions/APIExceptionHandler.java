@@ -1,6 +1,7 @@
 package planetaryAPI.exceptions;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -36,6 +37,17 @@ public class APIExceptionHandler {
     public Map<String, Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
         Map<String, Object> exMap = new HashMap<>();
         exMap.put("errors", getFieldErrorMessages(ex));
+        exMap.put("status", HttpStatus.BAD_REQUEST);
+        exMap.put("code", HttpStatus.BAD_REQUEST.value());
+        exMap.put("timestamp", LocalDateTime.now());
+        return exMap;
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, Object> handleHttpMessageNotReadableException() {
+        Map<String, Object> exMap = new HashMap<>();
+        exMap.put("message", "Your request contains malformed JSON");
         exMap.put("status", HttpStatus.BAD_REQUEST);
         exMap.put("code", HttpStatus.BAD_REQUEST.value());
         exMap.put("timestamp", LocalDateTime.now());
