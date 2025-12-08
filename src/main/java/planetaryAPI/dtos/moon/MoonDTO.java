@@ -1,4 +1,4 @@
-package planetaryAPI.dtos;
+package planetaryAPI.dtos.moon;
 
 import planetaryAPI.dtos.planet.PlanetDTO;
 

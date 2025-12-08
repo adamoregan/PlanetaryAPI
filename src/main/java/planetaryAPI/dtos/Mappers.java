@@ -1,5 +1,7 @@
 package planetaryAPI.dtos;
 
+import planetaryAPI.dtos.moon.MoonCreateDTO;
+import planetaryAPI.dtos.moon.MoonDTO;
 import planetaryAPI.dtos.planet.PlanetChangeDTO;
 import planetaryAPI.dtos.planet.PlanetCreateDTO;
 import planetaryAPI.dtos.planet.PlanetDTO;
@@ -7,16 +9,6 @@ import planetaryAPI.entities.Moon;
 import planetaryAPI.entities.Planet;
 
 public class Mappers {
-    public static MoonDTO mapMoonToMoonDTO(Moon m) {
-        return new MoonDTO(
-                m.getMoon_id(),
-                m.getName(),
-                m.getDiameter_km(),
-                m.getOrbital_period_days(),
-                m.getPlanet() != null ? mapPlanetToPlanetDTO(m.getPlanet()) : null
-        );
-    }
-
     public static PlanetDTO mapPlanetToPlanetDTO(Planet p) {
         return new PlanetDTO(
                 p.getPlanet_id(),
@@ -58,5 +50,23 @@ public class Mappers {
         planet.setRadius_km(p.radiusKm());
         planet.setOrbital_period_days(p.orbitalPeriodDays());
         return planet;
+    }
+
+    public static MoonDTO mapMoonToMoonDTO(Moon m) {
+        return new MoonDTO(
+                m.getMoon_id(),
+                m.getName(),
+                m.getDiameter_km(),
+                m.getOrbital_period_days(),
+                m.getPlanet() != null ? mapPlanetToPlanetDTO(m.getPlanet()) : null
+        );
+    }
+
+    public static Moon mapMoonCreateDTOToMoon(MoonCreateDTO m) {
+        Moon moon = new Moon();
+        moon.setName(m.name());
+        moon.setDiameter_km(m.diameterKm());
+        moon.setOrbital_period_days(m.orbitalPeriodDays());
+        return moon;
     }
 }
