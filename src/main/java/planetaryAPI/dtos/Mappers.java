@@ -7,6 +7,9 @@ import planetaryAPI.dtos.planet.PlanetCreateDTO;
 import planetaryAPI.dtos.planet.PlanetDTO;
 import planetaryAPI.entities.Moon;
 import planetaryAPI.entities.Planet;
+import planetaryAPI.dtos.user.APIUserDTO;
+import planetaryAPI.entities.user.APIUser;
+
 
 public class Mappers {
     public static PlanetDTO mapPlanetToPlanetDTO(Planet p) {
@@ -68,5 +71,16 @@ public class Mappers {
         moon.setDiameter_km(m.diameterKm());
         moon.setOrbital_period_days(m.orbitalPeriodDays());
         return moon;
+    }
+
+    public static APIUserDTO mapUserToUserDTO(APIUser u) {
+        return new APIUserDTO(
+                u.getName(),
+                u.getPassword(),
+                u.getRole(),
+                u.isEnabled(),
+                u.getCreated_at(),
+                u.getUpdated_at()
+        );
     }
 }
