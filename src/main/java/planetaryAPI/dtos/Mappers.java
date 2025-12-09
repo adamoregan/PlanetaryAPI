@@ -5,10 +5,13 @@ import planetaryAPI.dtos.moon.MoonDTO;
 import planetaryAPI.dtos.planet.PlanetChangeDTO;
 import planetaryAPI.dtos.planet.PlanetCreateDTO;
 import planetaryAPI.dtos.planet.PlanetDTO;
+import planetaryAPI.dtos.user.UserCreateDTO;
 import planetaryAPI.entities.Moon;
 import planetaryAPI.entities.Planet;
 import planetaryAPI.dtos.user.APIUserDTO;
 import planetaryAPI.entities.user.APIUser;
+
+import java.sql.Timestamp;
 
 
 public class Mappers {
@@ -82,5 +85,16 @@ public class Mappers {
                 u.getCreated_at(),
                 u.getUpdated_at()
         );
+    }
+
+    public static APIUser mapUserCreateDTOToUser(UserCreateDTO u) {
+        APIUser user = new APIUser();
+        user.setName(u.name());
+        user.setPassword(u.password());
+        user.setRole(u.type());
+        user.setEnabled(u.enabled());
+        user.setCreated_at(new Timestamp(System.currentTimeMillis()));
+        user.setUpdated_at(new Timestamp(System.currentTimeMillis()));
+        return user;
     }
 }
